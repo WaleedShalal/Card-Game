@@ -1,11 +1,11 @@
 // // // 1# Get Number Of Cards && Make Array Of Index Number // // //
-var cardsContainer = document.querySelector('#cards__container');
+var cardsContainer = document.querySelector("#cards__container");
 var cards = Array.from(cardsContainer.children);
 var cardsOrderArr = Array.from(cards.keys());
 // // // 1# Get Number Of Cards && Make Array Of Index Number// // //
 
 // // // 2# Add Event On Window Instead Of Function Self Invoke// // //
-window.addEventListener('load', function () {
+window.addEventListener("load", function () {
   addCardClass(cards);
 });
 // // // 2# Add Event On Window Instead Of Function Self Invoke// // //
@@ -13,8 +13,8 @@ window.addEventListener('load', function () {
 // // // 3# Add Event Click For Each Card To Add Claas // // //
 function addCardClass(cards) {
   cards.forEach(function (card) {
-    card.addEventListener('click', function () {
-      card.classList.add('is__rotated');
+    card.addEventListener("click", function () {
+      card.classList.add("is__rotated");
       getRotatedCards(cards);
     });
   });
@@ -25,7 +25,7 @@ function addCardClass(cards) {
 // // // 4# Get Rotated Card // // //
 function getRotatedCards(cards) {
   var rotatedCards = cards.filter(function (card) {
-    return card.classList.contains('is__rotated');
+    return card.classList.contains("is__rotated");
   });
   handleCardsEvent(rotatedCards);
 }
@@ -60,30 +60,33 @@ function getNewOrderArr(cardsOrderArr) {
 function handleCardsEvent(rotatedCards) {
   if (rotatedCards.length === 2) {
     // Class In CSS File Stop All Card Events
-    cardsContainer.classList.add('not__rotated');
+    cardsContainer.classList.add("not__rotated");
     // If Cards Are Same
     if (rotatedCards[0].dataset.marvel === rotatedCards[1].dataset.marvel) {
       // Sound In HTML
-      document.getElementById('right__guess').play();
+      // document.getElementById("right__guess").play();
+      setTimeout(function () {
+        document.getElementById("right__guess").play();
+      }, 400);
       // Make Same Cards Unvisible
       setTimeout(function () {
-        rotatedCards[0].style.visibility = 'hidden';
-        rotatedCards[1].style.visibility = 'hidden';
+        rotatedCards[0].style.visibility = "hidden";
+        rotatedCards[1].style.visibility = "hidden";
       }, 1200);
     }
     // If Cards Are Different
     else {
       // Sound In HTML
       setTimeout(function () {
-        document.getElementById('wrong__guess').play();
-      }, 500);
+        document.getElementById("wrong__guess").play();
+      }, 400);
     }
     // If Cards Are Same Or Different Will Do This
     setTimeout(function () {
-      cardsContainer.classList.remove('not__rotated');
-      rotatedCards[0].classList.remove('is__rotated');
-      rotatedCards[1].classList.remove('is__rotated');
-    }, 1200);
+      cardsContainer.classList.remove("not__rotated");
+      rotatedCards[0].classList.remove("is__rotated");
+      rotatedCards[1].classList.remove("is__rotated");
+    }, 1100);
   }
 }
 // // // 7# Check How Many Cards Is__Rotated && If It's Same Or Not // // //
